@@ -101,6 +101,7 @@ if (!project.ext.concreteModules.isEmpty()) {
 	}
 
 	shadowJar {
+		classifier = ''
 		relocate 'com.elytradev.concrete', project.ext.package+'.repackage.com.elytradev.concrete'
 		configurations = [project.configurations.shadow]
 	}
