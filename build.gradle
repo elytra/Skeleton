@@ -61,6 +61,9 @@ if (project.ext.useElytraVersionFormat) {
 	} else {
 		branch = 'git rev-parse --abbrev-ref HEAD'.execute().in.text.trim();
 	}
+	if (branch == "HEAD") {
+		branch = 'git rev-parse --short HEAD'.execute().in.text.trim();
+	}
 	def commits = 'git rev-list --count HEAD'.execute().in.text.trim();
 	def dirty = !'git diff-index HEAD'.execute().in.text.trim().isEmpty();
 	version = branch+'-'+project.ext.version+'.'+commits+(dirty ? '-dirty' : '');
