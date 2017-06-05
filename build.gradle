@@ -47,6 +47,8 @@ buildscript {
 	}
 }
 
+println System.env
+
 apply plugin: 'net.minecraftforge.gradle.forge'
 apply plugin: 'me.tatarka.retrolambda'
 
