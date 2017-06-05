@@ -47,8 +47,6 @@ buildscript {
 	}
 }
 
-println System.env
-
 apply plugin: 'net.minecraftforge.gradle.forge'
 apply plugin: 'me.tatarka.retrolambda'
 
@@ -56,9 +54,9 @@ apply from: 'project.gradle'
 
 if (project.ext.useElytraVersionFormat) {
 	def branch;
-	if (System.env.GIT_BRANCH) {
+	if (System.env.BRANCH_NAME) {
 		// Jenkins support
-		branch = System.env.GIT_BRANCH;
+		branch = System.env.BRANCH_NAME;
 		branch = branch.substring(branch.lastIndexOf('/')+1);
 	} else {
 		branch = 'git rev-parse --abbrev-ref HEAD'.execute().in.text.trim();
