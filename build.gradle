@@ -53,7 +53,14 @@ apply plugin: 'me.tatarka.retrolambda'
 apply from: 'project.gradle'
 
 if (project.ext.useElytraVersionFormat) {
-	def branch = 'git rev-parse --abbrev-ref HEAD'.execute().in.text.trim();
+	def branch;
+	if (System.env.GIT_BRANCH) {
+		// Jenkins support
+		branch = System.env.GIT_BRANCH;
+		branch = branch.substring(branch.lastIndexOf('/')+1);
+	} else {
+		branch = 'git rev-parse --abbrev-ref HEAD'.execute().in.text.trim();
+	}
 	def commits = 'git rev-list --count HEAD'.execute().in.text.trim();
 	def dirty = !'git diff-index HEAD'.execute().in.text.trim().isEmpty();
 	version = branch+'-'+project.ext.version+'.'+commits+(dirty ? '-dirty' : '');
@@ -61,7 +68,7 @@ if (project.ext.useElytraVersionFormat) {
 	version = project.ext.version;
 }
 
-println("Elytra Project Skeleton v1.0.2")
+println("Elytra Project Skeleton v1.0.3")
 println("https://github.com/elytra/skel")
 println()
 println("Project Name: "+project.ext.projectName)
