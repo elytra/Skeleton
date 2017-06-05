@@ -52,11 +52,20 @@ apply plugin: 'me.tatarka.retrolambda'
 
 apply from: 'project.gradle'
 
-println("Elytra Project Skeleton v1.0.1")
+if (project.ext.useElytraVersionFormat) {
+	def branch = 'git rev-parse --abbrev-ref HEAD'.execute().in.text.trim();
+	def commits = 'git rev-list --count HEAD'.execute().in.text.trim();
+	def dirty = !'git diff-index HEAD'.execute().in.text.trim().isEmpty();
+	version = branch+'-'+project.ext.version+'.'+commits+(dirty ? '-dirty' : '');
+} else {
+	version = project.ext.version;
+}
+
+println("Elytra Project Skeleton v1.0.2")
 println("https://github.com/elytra/skel")
 println()
 println("Project Name: "+project.ext.projectName)
-println("Version: "+project.ext.version)
+println("Version: "+version)
 println()
 println("Package: "+project.ext.package)
 println()
@@ -70,7 +79,6 @@ project.ext.priv = parseConfig(file('private.properties'))
 
 group = "com.elytradev"
 archivesBaseName = project.ext.projectName
-version = project.ext.version
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
