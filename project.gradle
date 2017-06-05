@@ -1,6 +1,9 @@
 ext.package = 'com.elytradev.skeleton'
 ext.projectName = 'Skeleton'
-ext.version = '0.0.1'
+// if false, use ext.version verbatim
+// if true, prepend the branch name, and append the commit count
+ext.useElytraVersionFormat = true
+ext.version = '1'
 
 // 0.2.1 is the earliest Concrete version supported by the skeleton.
 ext.concreteVersion = '0.2.1'
