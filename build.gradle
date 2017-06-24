@@ -39,8 +39,7 @@ buildscript {
 		}
 	}
 	dependencies {
-		classpath 'net.minecraftforge.gradle:ForgeGradle:2.2-SNAPSHOT'
-		classpath 'me.tatarka:gradle-retrolambda:3.2.0'
+		classpath 'net.minecraftforge.gradle:ForgeGradle:2.3-SNAPSHOT'
 		classpath 'net.sf.proguard:proguard-gradle:5.3.3'
 		classpath 'com.github.jengelman.gradle.plugins:shadow:1.2.4'
 		classpath 'gradle.plugin.net.minecrell:licenser:0.3'
@@ -48,7 +47,6 @@ buildscript {
 }
 
 apply plugin: 'net.minecraftforge.gradle.forge'
-apply plugin: 'me.tatarka.retrolambda'
 
 apply from: 'project.gradle'
 
@@ -71,7 +69,7 @@ if (project.ext.useElytraVersionFormat) {
 	version = project.ext.version;
 }
 
-println("Elytra Project Skeleton v1.0.3")
+println("Elytra Project Skeleton v1.1.0")
 println("https://github.com/elytra/skel")
 println()
 println("Project Name: "+project.ext.projectName)
@@ -87,16 +85,11 @@ println("Mappings: "+project.ext.mappings)
 
 project.ext.priv = parseConfig(file('private.properties'))
 
-group = "com.elytradev"
+group = project.ext.group ? project.ext.group : "com.elytradev"
 archivesBaseName = project.ext.projectName
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
-
-retrolambda {
-	javaVersion JavaVersion.VERSION_1_6
-	defaultMethods true
-}
 
 repositories {
 	jcenter()
