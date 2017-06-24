@@ -85,7 +85,7 @@ println("Mappings: "+project.ext.mappings)
 
 project.ext.priv = parseConfig(file('private.properties'))
 
-group = project.ext.group ? project.ext.group : "com.elytradev"
+group = project.ext.group
 archivesBaseName = project.ext.projectName
 
 sourceCompatibility = 1.8

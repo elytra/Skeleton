@@ -1,4 +1,5 @@
 ext.package = 'com.elytradev.skeleton'
+ext.group = 'com.elytradev'
 ext.projectName = 'Skeleton'
 // if false, use ext.version verbatim
 // if true, prepend the branch name, and append the commit count
