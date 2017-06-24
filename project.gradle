@@ -9,8 +9,8 @@ ext.version = '1'
 ext.concreteVersion = '0.2.1'
 ext.concreteModules = [ 'common' ]
 
-ext.forge = '1.11.2-13.20.0.2226'
-ext.mappings = 'snapshot_20170205'
+ext.forge = '1.12-14.21.0.2359'
+ext.mappings = 'snapshot_20170624'
 
 ext.enforceLicenseHeaders = false
 
