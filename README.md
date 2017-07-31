@@ -2,7 +2,7 @@
 
 # Elytra Project Skeleton
 
-[>> Downloads <<](https://github.com/elytra/skel/releases)
+[>> Downloads <<](https://github.com/elytra/Skeleton/releases)
 
 *Spooky scary skeletons*
 
@@ -13,16 +13,30 @@ need to ask to use them. See the [LICENSE file](LICENSE) for more details.
 
 **Notice**: The issue template and downloads link on this project, as
 well as the open source modpack notice, are here for ease of inclusion
-in skel-derived mods, and do not neccessarily apply to skel itself.
+in Skeleton-derived mods, and do not neccessarily apply to Skeleton itself.
 
 A generic Gradle buildfile and a fairly sane project structure to make
 getting started easier. Rather than making a new empty directory and
-copying your Forge dev files over, just clone this repository instead.
-Cloning and keeping the commit history means that updating to new versions
-of the skeleton is a simple `git pull`.
+copying your Forge dev files over, just download a copy of this repository.
+
+**Note**: Previous versions of this readme recommended cloning the repo and
+keeping the history; this is likely to cause issues and probably shouldn't
+be attempted.
 
 Make sure to replace the README.md and decide if the MIT License is what
 you want to use. If it is, replace the copyright declaration to have your
 name instead of unascribed's.
 
 Don't edit build.gradle, just edit project.gradle.
+
+## Experimental Alternate Setup
+
+Copy Skeleton into your project directory as usual, but replace build.gradle
+with the following:
+
+```gradle
+apply from: 'https://raw.githubusercontent.com/elytra/Skeleton/1.12/build.gradle'
+```
+
+This will make the skeleton auto-update, but is possibly a security risk and
+requires a download of the build file every single time you run Gradle.
