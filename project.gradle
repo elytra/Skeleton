@@ -1,5 +1,8 @@
 ext.package = 'com.elytradev.skeleton'
+
+ext.group = 'com.elytradev'
 ext.projectName = 'Skeleton'
+
 // if false, use ext.version verbatim
 // if true, prepend the branch name, and append the commit count
 ext.useElytraVersionFormat = true
@@ -8,6 +11,10 @@ ext.version = '1'
 // 0.2.1 is the earliest Concrete version supported by the skeleton.
 ext.concreteVersion = '0.2.1'
 ext.concreteModules = [ 'common' ]
+
+// Set this to your IFMLLoadingPlugin if you have one
+ext.coremod = 'com.elytradev.skel.asm.Test'
+ext.miniVersion = '0.1-SNAPSHOT'
 
 ext.forge = '1.11.2-13.20.0.2226'
 ext.mappings = 'snapshot_20170205'

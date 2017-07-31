@@ -41,8 +41,7 @@ buildscript {
 	dependencies {
 		classpath 'net.minecraftforge.gradle:ForgeGradle:2.2-SNAPSHOT'
 		classpath 'me.tatarka:gradle-retrolambda:3.2.0'
-		classpath 'net.sf.proguard:proguard-gradle:5.3.3'
-		classpath 'com.github.jengelman.gradle.plugins:shadow:1.2.4'
+		classpath 'com.github.jengelman.gradle.plugins:shadow:2.0.0'
 		classpath 'gradle.plugin.net.minecrell:licenser:0.3'
 	}
 }
@@ -71,8 +70,8 @@ if (project.ext.useElytraVersionFormat) {
 	version = project.ext.version;
 }
 
-println("Elytra Project Skeleton v1.0.3")
-println("https://github.com/elytra/skel")
+println("Elytra Project Skeleton v1.0.4")
+println("https://github.com/elytra/Skeleton")
 println()
 println("Project Name: "+project.ext.projectName)
 println("Version: "+version)
@@ -82,12 +81,15 @@ println()
 if (!project.ext.concreteModules.isEmpty()) {
 	println("Concrete Version: "+project.ext.concreteVersion)
 }
+if (project.ext.coremod && project.ext.miniVersion) {
+	println("Mini Version: "+project.ext.miniVersion);
+}
 println("Forge Version: "+project.ext.forge)
 println("Mappings: "+project.ext.mappings)
 
 project.ext.priv = parseConfig(file('private.properties'))
 
-group = "com.elytradev"
+group = project.ext.group
 archivesBaseName = project.ext.projectName
 
 sourceCompatibility = 1.8
@@ -103,7 +105,7 @@ repositories {
 	mavenCentral()
 	maven {
 		name = 'elytra'
-		url = 'http://repo.elytradev.com/'
+		url = 'https://repo.elytradev.com/'
 	}
 }
 
@@ -111,7 +113,9 @@ if (project.ext.enforceLicenseHeaders) {
 	apply plugin: 'net.minecrell.licenser'
 }
 
-if (!project.ext.concreteModules.isEmpty()) {
+def needsShadow = !project.ext.concreteModules.isEmpty() || project.ext.miniVersion
+
+if (needsShadow) {
 	apply plugin: 'com.github.johnrengelman.shadow'
 
 	jar {
@@ -121,6 +125,7 @@ if (!project.ext.concreteModules.isEmpty()) {
 	shadowJar {
 		classifier = ''
 		relocate 'com.elytradev.concrete', project.ext.package+'.repackage.com.elytradev.concrete'
+		relocate 'com.elytradev.mini', project.ext.package+'.asm.repackage.com.elytradev.mini'
 		configurations = [project.configurations.shadow]
 	}
 
@@ -143,10 +148,14 @@ if (!project.ext.concreteModules.isEmpty()) {
 			shadow 'com.elytradev:concrete:'+project.ext.concreteVersion+':'+module
 			compile 'com.elytradev:concrete:'+project.ext.concreteVersion+':'+module
 		}
+		if (project.ext.miniVersion) {
+			shadow 'com.elytradev:mini:'+project.ext.miniVersion
+			compile 'com.elytradev:mini:'+project.ext.miniVersion
+		}
 	}
 }
 
-if (priv != null) {
+if (file('private.gradle').exists()) {
 	apply plugin: 'maven'
 
 	configurations {
@@ -157,15 +166,7 @@ if (priv != null) {
 		deploy 'org.apache.maven.wagon:wagon-ssh:2.10'
 	}
 
-	uploadArchives {
-		repositories.mavenDeployer {
-			configuration = configurations.deploy
-			pom.artifactId = project.ext.projectName.toLowerCase()
-			repository(url: "sftp://"+priv.sftpHost+priv.sftpPath) {
-				authentication(userName: priv.sftpUser, privateKey: file(priv.sftpKey))
-			}
-		}
-	}
+	apply from: 'private.gradle'
 }
 
 
@@ -178,6 +179,21 @@ minecraft {
 
 	replaceIn 'src/main/java/'+project.ext.package.replace('.', '/')+'/'+project.ext.projectName+'.java'
 	replace '@VERSION@', project.version
+
+	if (project.ext.coremod) {
+		coreMod = project.ext.coremod
+	}
+}
+
+if (project.ext.coremod) {
+	jar {
+		manifest {
+			attributes (
+				'FMLCorePlugin': project.ext.coremod,
+				'FMLCorePluginContainsFMLMod': true
+			)
+		}
+	}
 }
 
 processResources {
