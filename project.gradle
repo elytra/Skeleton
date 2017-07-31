@@ -1,6 +1,8 @@
-ext.package = 'com.elytradev.skeleton'
+ext {
+	package 'com.elytradev.skeleton'
 
-ext.group = 'com.elytradev'
+	group 'com.elytradev'
+}
 ext.projectName = 'Skeleton'
 
 // if false, use ext.version verbatim
@@ -16,6 +18,9 @@ ext.concreteModules = [ 'common' ]
 ext.coremod = 'com.elytradev.skel.asm.Test'
 ext.miniVersion = '0.1-SNAPSHOT'
 
+// Can be java, kotlin, or scala
+ext.language = 'java'
+
 ext.forge = '1.11.2-13.20.0.2226'
 ext.mappings = 'snapshot_20170205'
 
@@ -25,6 +30,7 @@ ext.verbose = false
 
 repositories {
 	// the skeleton already defines mavenCentral, jcenter, and the Elytra repo
+	// will also have Shadowfacts' maven if the language is set to kotlin
 }
 
 dependencies {
