@@ -55,6 +55,8 @@ if (project.ext.language == 'kotlin') {
 apply plugin: 'net.minecraftforge.gradle.forge'
 apply plugin: 'me.tatarka.retrolambda'
 
+project.ext.package = project.ext.group+'.'+project.ext.projectName.toLowerCase()
+
 if (project.ext.useElytraVersionFormat) {
 	def branch;
 	if (System.env.BRANCH_NAME) {

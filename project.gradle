@@ -1,32 +1,27 @@
+// See https://github.com/elytra/Skeleton/wiki for what all these values mean
+
 ext {
-	package 'com.elytradev.skeleton'
+	group = 'com.elytradev'
+	projectName = 'Skeleton'
 
-	group 'com.elytradev'
+	useElytraVersionFormat = true
+	version = '1'
+
+	concreteVersion = '0.2.1'
+	concreteModules = [ 'common' ]
+
+	coremod = null
+	miniVersion = null
+
+	language = 'java'
+
+	forge = '1.11.2-13.20.0.2226'
+	mappings = 'snapshot_20170205'
+
+	enforceLicenseHeaders = false
+
+	verbose = false
 }
-ext.projectName = 'Skeleton'
-
-// if false, use ext.version verbatim
-// if true, prepend the branch name, and append the commit count
-ext.useElytraVersionFormat = true
-ext.version = '1'
-
-// 0.2.1 is the earliest Concrete version supported by the skeleton.
-ext.concreteVersion = '0.2.1'
-ext.concreteModules = [ 'common' ]
-
-// Set this to your IFMLLoadingPlugin if you have one
-ext.coremod = 'com.elytradev.skel.asm.Test'
-ext.miniVersion = '0.1-SNAPSHOT'
-
-// Can be java, kotlin, or scala
-ext.language = 'java'
-
-ext.forge = '1.11.2-13.20.0.2226'
-ext.mappings = 'snapshot_20170205'
-
-ext.enforceLicenseHeaders = false
-
-ext.verbose = false
 
 repositories {
 	// the skeleton already defines mavenCentral, jcenter, and the Elytra repo
