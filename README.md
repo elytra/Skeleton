@@ -35,7 +35,7 @@ Copy Skeleton into your project directory as usual, but replace build.gradle
 with the following:
 
 ```gradle
-apply from: 'https://raw.githubusercontent.com/elytra/Skeleton/1.12/build.gradle'
+apply from: 'https://raw.githubusercontent.com/elytra/Skeleton/1.11.2/build.gradle'
 ```
 
 This will make the skeleton auto-update, but is possibly a security risk and
