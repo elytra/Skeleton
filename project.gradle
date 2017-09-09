@@ -23,6 +23,7 @@ ext {
 	verbose = false
 }
 
+if (!ext.early) {
 repositories {
 	// the skeleton already defines mavenCentral, jcenter, and the Elytra repo
 	// will also have Shadowfacts' maven if the language is set to kotlin
@@ -30,4 +31,5 @@ repositories {
 
 dependencies {
 
+}
 }
