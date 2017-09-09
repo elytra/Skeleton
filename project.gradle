@@ -7,7 +7,7 @@ ext {
 	useElytraVersionFormat = true
 	version = '1'
 
-	concreteVersion = '0.2.1'
+	concreteVersion = '0.3.2'
 	concreteModules = [ 'common' ]
 
 	coremod = null
@@ -15,8 +15,8 @@ ext {
 
 	language = 'java'
 
-	forge = '1.12-14.21.0.2359'
-	mappings = 'snapshot_20170624'
+	forge = '1.12.1-14.22.0.2474'
+	mappings = 'snapshot_20170908'
 
 	enforceLicenseHeaders = false
 
