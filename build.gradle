@@ -44,6 +44,7 @@ buildscript {
 	}
 }
 
+ext.early = true
 apply from: 'project.gradle'
 
 if (project.ext.language == 'kotlin') {
@@ -74,7 +75,7 @@ if (project.ext.useElytraVersionFormat) {
 	version = project.ext.version;
 }
 println()
-println("Elytra Project Skeleton v1.1.1")
+println("Elytra Project Skeleton v1.1.2")
 println("https://github.com/elytra/Skeleton")
 println()
 println("Project Name: "+project.ext.projectName)
@@ -101,7 +102,6 @@ archivesBaseName = project.ext.projectName
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
-
 
 repositories {
 	jcenter()
@@ -161,6 +161,9 @@ if (needsShadow) {
 		}
 	}
 }
+
+ext.early = false
+apply from: 'project.gradle'
 
 if (project.ext.language == 'kotlin') {
 	dependencies {
