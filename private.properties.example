@@ -1,4 +1,0 @@
-sftpHost=some.sftp.host
-sftpPath=/maven/
-sftpUser=myself
-sftpKey=/home/me/.ssh/id_rsa
