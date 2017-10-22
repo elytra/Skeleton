@@ -14,6 +14,8 @@
 *.launch
 *.iml
 .idea
+*.ipr
+*.iws
 
 # Sekrit files
 private.properties
