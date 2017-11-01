@@ -152,8 +152,8 @@ if (needsShadow) {
 
 	dependencies {
 		for (String module : project.ext.concreteModules) {
-			shadow 'com.elytradev:concrete-'+module+':'+project.ext.concreteVersion
-			deobfCompile 'com.elytradev:concrete-'+module+':'+project.ext.concreteVersion
+			shadow 'com.elytradev.concrete:concrete-'+module+':'+project.ext.concreteVersion
+			deobfCompile 'com.elytradev.concrete:concrete-'+module+':'+project.ext.concreteVersion
 		}
 		if (project.ext.miniVersion) {
 			shadow 'com.elytradev:mini:'+project.ext.miniVersion
